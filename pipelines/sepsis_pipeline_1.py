@@ -1,5 +1,5 @@
 """
-sepsis_pipeline.py — V1 Baseline Pipeline
+sepsis_pipeline_1.py — V1 Baseline Pipeline
 ============================================
 Three-agent LLM pipeline for retrospective sepsis identification from EHR data.
 University of Michigan, Michigan Medicine — April 2026
@@ -32,7 +32,7 @@ OUTPUT:
       Fields: CSN, infection_agent, organ_dysfunction_agent, sepsis_agent
 
 USAGE:
-    python sepsis_pipeline.py
+    python sepsis_pipeline_1.py
 
 REQUIREMENTS:
     pip install openai pandas scikit-learn
