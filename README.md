@@ -7,16 +7,21 @@ Analysis of a three-agent GPT-5.2 pipeline developed to retrospectively identify
 This project implements and evaluates a three-agent LLM pipeline for automated retrospective sepsis identification from EHR data. The pipeline was evaluated against physician review as the gold standard across 187 hospitalization encounters. Three pipeline versions were tested through iterative prompt engineering to optimize performance.
 
 ## Repository Structure
+
+```
+Validation-of-LLMs-for-the-Accurate-Identification-of-Clinical-Sepsis-Cases/
+│
 ├── pipelines/
 │   ├── sepsis_pipeline_1.py        # V1 — baseline prompt, no clinical guidance
 │   ├── sepsis_pipeline_2.py        # V2 — Sepsis-3 definition + 5 few-shot examples
 │   └── sepsis_pipeline_3.py        # V3 — Sepsis-3 definition only
 │
 ├── analysis/
-│   └── accuracy_analysis_all_versions.py   # Consolidated analysis — all 3 versions
+│   └── accuracy_analysis_all_versions.py
 │
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
@@ -161,7 +166,7 @@ Monitor progress:
 tail -f results/sepsis_analysis_1/pipeline_v1_log.txt
 ```
 
-Each pipeline run takes approximately 2-4 hours for 187 cases with 4 parallel workers. The pipeline uses checkpointing — if interrupted, simply rerun the same command and it will skip already-completed cases.
+Each pipeline run takes approximately 2-4 hours for 187 cases with 4 parallel workers. The pipeline uses checkpointing and if interrupted, simply rerun the same command and it will skip already-completed cases.
 
 ### Step 7 — Verify results
 
@@ -232,10 +237,10 @@ Each pipeline produces a `.jsonl` file where each line is one patient case:
 
 ## Limitations
 
-- Negative physician review file was unavailable — 91 Sepsis-3 negative cases treated as true negatives, potentially overestimating specificity.
+- Negative physician review file was unavailable so 91 Sepsis-3 negative cases treated as true negatives, potentially overestimating specificity.
 - V2/V3 sensitivity tradeoff — model becomes more conservative, missing more true sepsis cases (FN increases from 4 to 12/10).
-- Single site — results represent Michigan Medicine only. Multicenter generalizability across UCSD, UCLA, UCI is unknown.
-- Sepsis onset time accuracy unvalidated — physician onset timestamps were not available for comparison.
+- Single site as results represent Michigan Medicine only. Multicenter generalizability across UCSD, UCLA, UCI is unknown.
+- Sepsis onset time accuracy unvalidated and physician onset timestamps were not available for comparison.
 
 ## License
 
